@@ -48,7 +48,7 @@ namespace detection
             HParamBlockRec sts = {
                 .volumeParam = {
                     .ioCompletion = NULL,
-                    .ioVolIndex = vRefNum,
+                    .ioVolIndex = listNum,
                 }};
             err = PBHGetVInfo(&sts, false);
             if (err != 0)
@@ -73,7 +73,7 @@ namespace detection
             pprintMemory(allBlocks);
             printf(" (");
             pprintMemory(freeBlocks);
-            printf(" free)");
+            printf(" free) (ID: %d)", i);
         };
     }
 }
