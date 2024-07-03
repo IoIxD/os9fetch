@@ -1,7 +1,6 @@
 <table border="0">
   <tr>
-    <td>
-       <img style='width: 100%;' src="https://github.com/IoIxD/os9fetch/assets/30945097/74f573fe-ce7f-4ffc-b3a3-852aedd3d1a7">
+    <td><img style='width: 100%;' src="https://github.com/IoIxD/os9fetch/assets/30945097/42485293-4dd1-46f8-902e-35bee0be846f">
      </td>
      <td width="30%">
        <h1>os9fetch</h1>
