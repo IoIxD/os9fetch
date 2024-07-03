@@ -10,6 +10,11 @@ namespace detection
     {
         auto vec = std::vector<std::function<void()>>();
 
+        if (detection::name_avaliable())
+        {
+            vec.push_back(std::function<void()>(detection::name));
+            vec.push_back(std::function<void()>(detection::line));
+        }
         vec.push_back(std::function<void()>(detection::os));
         vec.push_back(std::function<void()>(detection::rom));
         // vec.push_back(std::function<void()>(detection::uptime));
