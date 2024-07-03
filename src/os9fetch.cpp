@@ -25,12 +25,14 @@ std::vector<std::string> apple_logo = {"                    'c.              ",
 
 int main()
 {
+
   auto functions = detection::functions();
   std::vector<std::string> buf = std::vector<std::string>();
 
   for (int i = 0; i < apple_logo.size(); i++)
   {
-    printf("%s ", apple_logo[i].c_str());
+    auto logo = apple_logo[i].c_str();
+    printf("%s ", logo);
     if (i < functions.size())
     {
       functions[i]();

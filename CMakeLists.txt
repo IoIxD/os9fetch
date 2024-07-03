@@ -40,7 +40,7 @@ file(GLOB_RECURSE data resources/*)
 
 # add the data to the target, so it becomes visible in some IDE
 if(CMAKE_SYSTEM_NAME MATCHES Retro)
-    add_application(os9fetch ${sources} ${data} CONSOLE)
+    add_application(os9fetch ${sources} ${data})
 else()
     add_executable(os9fetch ${sources} ${data})
 endif()
