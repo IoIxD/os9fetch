@@ -29,12 +29,12 @@ namespace detection
 
         return driveNumbers.size();
     }
-    std::function<void()> disk(int i)
+    std::function<void()> disk(int listNum, short i)
     {
-        return [i]
+        return [listNum, i]
         {
             OSErr err;
-            /*unsigned char *volName;
+            unsigned char *volName;
             short vRefNum;
             long freeBytes;
 
@@ -43,12 +43,12 @@ namespace detection
             {
                 printf("Error getting disk %d's name: %d", i, err);
                 return;
-            }*/
+            }
 
             HParamBlockRec sts = {
                 .volumeParam = {
                     .ioCompletion = NULL,
-                    .ioVolIndex = i,
+                    .ioVolIndex = vRefNum,
                 }};
             err = PBHGetVInfo(&sts, false);
             if (err != 0)
@@ -57,7 +57,7 @@ namespace detection
             }
             auto io = sts.volumeParam;
 
-            auto n = io.ioNamePtr;
+            auto n = volName;
             auto len = n[0];
             auto str = std::string();
             for (int j = 1; j < len + 1; j++)
@@ -65,9 +65,9 @@ namespace detection
                 str += n[j];
             };
 
-            float allBlocks = ((float)(unsigned long)io.ioVNmAlBlks * (float)(unsigned long)io.ioVAlBlkSiz);
-            float freeBlocks = ((float)(unsigned long)io.ioVFrBlk * (float)(unsigned long)io.ioVAlBlkSiz);
-            printf("Disk %d: %s, ", i, str.c_str());
+            float allBlocks = ((float)(unsigned short)io.ioVNmAlBlks * (float)(unsigned long)io.ioVAlBlkSiz);
+            float freeBlocks = (float)(unsigned long)freeBytes;
+            printf("Disk %d: %s, ", listNum, str.c_str());
             pprintMemory(allBlocks - freeBlocks);
             printf("/");
             pprintMemory(allBlocks);

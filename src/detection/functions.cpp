@@ -30,7 +30,7 @@ namespace detection
         for (int i = 0; i < disks; i++)
         {
 
-            vec.push_back(std::function<void()>(detection::disk(i + 1)));
+            vec.push_back(std::function<void()>(detection::disk(i + 1, numbers[i])));
         }
 
         return vec;

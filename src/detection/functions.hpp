@@ -25,7 +25,7 @@ namespace detection
     std::vector<short> drive_numbers();
 
     short disk_num();
-    std::function<void()> disk(int i);
+    std::function<void()> disk(int listNum, short i);
 
     // void uptime();
     std::vector<std::function<void()>>
