@@ -25,6 +25,14 @@ namespace detection
         {
             vec.push_back(std::function<void()>(detection::battery));
         }
+        short disks = detection::disk_num();
+        auto numbers = detection::drive_numbers();
+        for (int i = 0; i < disks; i++)
+        {
+
+            vec.push_back(std::function<void()>(detection::disk(i + 1)));
+        }
+
         return vec;
     }
 }

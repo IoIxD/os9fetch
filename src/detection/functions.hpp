@@ -19,6 +19,13 @@ namespace detection
     void gpu();
     void name();
     void line();
+    void pprintMemory(float memSize);
+    void pprintMemoryMB(float memSize);
+    bool is_utf8(const char *string);
+    std::vector<short> drive_numbers();
+
+    short disk_num();
+    std::function<void()> disk(int i);
 
     // void uptime();
     std::vector<std::function<void()>>
