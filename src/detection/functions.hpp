@@ -14,8 +14,8 @@ namespace detection
     void model();
     void os();
     void rom();
-    void screen();
     void battery();
+    void gpu();
 
     // void uptime();
     std::vector<std::function<void()>> functions();

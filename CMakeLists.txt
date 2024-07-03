@@ -2,9 +2,8 @@ cmake_minimum_required(VERSION 3.0)
 
 project(os9fetch LANGUAGES C CXX)
 
-# compile flags
-set(COMPILE_FLAGS -Wall -MMD -Wno-array-bounds -Wno-format-truncation)
 
+# compile flags
 add_compile_options(${COMPILE_FLAGS})
 add_compile_definitions(
     _GNU_SOURCE
@@ -45,6 +44,7 @@ if(CMAKE_SYSTEM_NAME MATCHES Retro)
 else()
     add_executable(os9fetch ${sources} ${data})
 endif()
+target_link_directories(os9fetch PUBLIC ${CMAKE_SOURCE_DIR}/lib )
 
 set_property(TARGET os9fetch PROPERTY CXX_STANDARD 20)
 
@@ -55,8 +55,13 @@ set_target_properties(os9fetch PROPERTIES COMPILE_OPTIONS -ffunction-sections)
 #target_link_libraries(os9fetch "${RETRO68_ROOT}/InterfaceAndLibraries/Libraries/StubLibraries/ThreadsLib")
 
 #target_link_libraries( os9fetch ThreadsLib)
+
 target_link_libraries( os9fetch PowerMgrLib)
 target_link_libraries( os9fetch NameRegistryLib)
+target_link_libraries( os9fetch AppleScriptLib)
+target_link_libraries( os9fetch -Lglut.lib)
+include_directories( "${RETRO68_TOOLCHAIN}universal/CIncludes/")
+
 if(CMAKE_SYSTEM_NAME MATCHES Retro68)
     set_target_properties(os9fetch PROPERTIES LINK_FLAGS "-Wl,--mac-strip-macsbug")
 endif()

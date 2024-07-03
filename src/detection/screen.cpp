@@ -1,14 +1,12 @@
-#include <Quickdraw.h>
-#include <string>
-
+#include "functions.hpp"
+#include <AppleScript.h>
 namespace detection
 {
-    void screen()
+    void name()
     {
-        short hortizontal;
-        short vertical;
+        auto gScriptingComponent = OpenDefaultComponent(kOSAComponentType,
+                                                        kOSAGenericScriptingComponentSubtype);
 
-        ScreenRes(&hortizontal, &vertical);
-        printf("Resolution: %dx%d", hortizontal, vertical);
+        auto err = ASInit(gScriptingComponent, kOSAModeNull, kASDefaultMinStackSize, kASDefaultPreferredStackSize, kASDefaultMaxStackSize, kASDefaultMinHeapSize, kASDefaultPreferredHeapSize, kASDefaultMaxHeapSize);
     }
 }
