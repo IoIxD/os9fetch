@@ -252,6 +252,250 @@ namespace detection
             case 0x003c0300:
                 name = "PowerPC G5	970FX Rev. 3.0";
                 break;
+            case 0x00200000:
+                name = "PowerPC 403GA";
+                break;
+            case 0x00200100:
+                name = "PowerPC 403GB";
+                break;
+            case 0x00200200:
+                name = "PowerPC 403GC";
+                break;
+            case 0x00201400:
+                name = "PowerPC 403GCX";
+                break;
+            case 0x40110000:
+                name = "PowerPC 405GP";
+                break;
+            case 0x40110040:
+                name = "PowerPC 405GP Rev. B";
+                break;
+            case 0x40110082:
+                name = "PowerPC 405GP Rev. C";
+                break;
+            case 0x401100C4:
+                name = "PowerPC 405GP Rev. D";
+                break;
+            case 0x40110145:
+                name = "PowerPC 405GP Rev. E or 405CR Rev. C";
+                break;
+            case 0x40110041:
+                name = "PowerPC 405CR Rev. A";
+                break;
+            case 0x401100C5:
+                name = "PowerPC 405CR Rev. B";
+                break;
+            case 0x51210950:
+                name = "PowerPC 405EP Rev. A or Rev. B";
+                break;
+            case 0x50910951:
+                name = "PowerPC 405GPR Rev. B";
+                break;
+            case 0x41511460:
+                name = "PowerPC 405EZ Rev. A";
+                break;
+            case 0x12911471:
+                name = "PowerPC 405EXR2 Rev. A";
+                break;
+            case 0x12911477:
+                name = "PowerPC 405EX1 Rev. A";
+                break;
+            case 0x1291147B:
+                name = "PowerPC 405EXR1 Rev. C";
+                break;
+            case 0x12911479:
+                name = "PowerPC 405EXR2 Rev. C";
+                break;
+            case 0x1291147F:
+                name = "PowerPC 405EX1 Rev. C";
+                break;
+            case 0x1291147D:
+                name = "PowerPC 405EX2 Rev. C";
+                break;
+            case 0x12911472:
+                name = "PowerPC 405EXR1 Rev. D";
+                break;
+            case 0x12911470:
+                name = "PowerPC 405EXR2 Rev. D";
+                break;
+            case 0x12911475:
+                name = "PowerPC 405EX1 Rev. D";
+                break;
+            case 0x12911473:
+                name = "PowerPC 405EX2 Rev. D";
+                break;
+            case 0x40120440:
+                name = "PowerPC 440GP Rev. B";
+                break;
+            case 0x40120481:
+                name = "PowerPC 440GP Rev. C";
+                break;
+            case 0x42221850:
+                name = "PowerPC 440EP Rev. A";
+                break;
+            case 0x422218D3:
+                name = "PowerPC 440EP Rev. B or 440GR Rev. A";
+                break;
+            case 0x422218D4:
+                name = "PowerPC 440EP Rev. C or 440GR Rev. B";
+                break;
+            case 0x216218D0:
+                name = "PowerPC 440EPX1 Rev. A or 440GRX1 Rev. A";
+                break;
+            case 0x216218D4:
+                name = "PowerPC 440EPX2 Rev. A or 440GRX2 Rev. A";
+                break;
+            case 0x51B21850:
+                name = "PowerPC 440GX Rev. A";
+                break;
+            case 0x51B21851:
+                name = "PowerPC 440GX Rev. B";
+                break;
+            case 0x51B21892:
+                name = "PowerPC 440GX Rev. C";
+                break;
+            case 0x51B21894:
+                name = "PowerPC 440GX Rev. F";
+                break;
+            case 0x53221850:
+                name = "PowerPC 440SP_6 Rev. AB";
+                break;
+            case 0x53321850:
+                name = "PowerPC 440SP Rev. AB";
+                break;
+            case 0x53221891:
+                name = "PowerPC 440SP_6 Rev. C";
+                break;
+            case 0x53321891:
+                name = "PowerPC 440SP Rev. C";
+                break;
+            case 0x53421890:
+                name = "PowerPC 440SPe_6 Rev. A";
+                break;
+            case 0x53521890:
+                name = "PowerPC 440SPe Rev. A";
+                break;
+            case 0x53421891:
+                name = "PowerPC 440SPe_6 Rev. B";
+                break;
+            case 0x53521891:
+                name = "PowerPC 440SPe Rev. B";
+                break;
+            case 0x130218A2:
+                name = "PowerPC 460EX_SE Rev. A";
+                break;
+            case 0x130218A3:
+                name = "PowerPC 460EX Rev. A";
+                break;
+            case 0x130218A4:
+                name = "PowerPC 460EX Rev. B";
+                break;
+            case 0x130218A0:
+                name = "PowerPC 460GT_SE Rev. A";
+                break;
+            case 0x130218A1:
+                name = "PowerPC 460GT Rev. A";
+                break;
+            case 0x130218A5:
+                name = "PowerPC 460GT Rev. B";
+                break;
+            case 0x13541800:
+                name = "PowerPC 460SX Rev. A";
+                break;
+            case 0x13541801:
+                name = "PowerPC 460SX Rev. A_V1";
+                break;
+            case 0x13541802:
+                name = "PowerPC 460GX Rev. A";
+                break;
+            case 0x13541803:
+                name = "PowerPC 460GX Rev. A_V1";
+                break;
+            case 0x12C41C80:
+                name = "PowerPC APM821XX Rev. A";
+                break;
+            case 0x00010000:
+                name = "PowerPC 601";
+                break;
+            case 0x00050000:
+                name = "PowerPC 602";
+                break;
+            case 0x00030000:
+                name = "PowerPC 603";
+                break;
+            case 0x00060000:
+                name = "PowerPC 603e";
+                break;
+            case 0x00070000:
+                name = "PowerPC 603ev";
+                break;
+            case 0x00071000:
+                name = "PowerPC 603r";
+                break;
+            case 0x00040000:
+                name = "PowerPC 604";
+                break;
+            case 0x00090000:
+                name = "PowerPC 604e";
+                break;
+            case 0x000A0000:
+                name = "PowerPC 604r";
+                break;
+            case 0x00140000:
+                name = "PowerPC 620";
+                break;
+            case 0x00080000:
+                name = "PowerPC 740/750";
+                break;
+            case 0x10080000:
+                name = "PowerPC 740P/750P";
+                break;
+            case 0x000C0000:
+                name = "PowerPC 7400";
+                break;
+            case 0x800C0000:
+                name = "PowerPC 7410";
+                break;
+            case 0x80000000:
+                name = "PowerPC 7450";
+                break;
+            case 0x80200000:
+                name = "PowerPC 85xx";
+                break;
+            case 0x80210000:
+                name = "PowerPC 85xx Rev. 1.0";
+                break;
+            case 0x80220000:
+                name = "PowerPC 85xx Rev. 1.0";
+                break;
+            case 0x80040000:
+                name = "PowerPC 86xx";
+                break;
+            case 0x7ff21912:
+                name = "PowerPC VIRTEX5";
+                break;
+            case 0x00500000:
+                name = "PowerPC 821/832/850/860";
+                break;
+            case 0x00810100:
+                name = "PowerPC 8240/8240/8260";
+                break;
+            case 0x00810101:
+                name = "PowerPC 8260_HIP3";
+                break;
+            case 0x80811014:
+                name = "PowerPC 8260_HIP4";
+                break;
+            case 0x80822011:
+                name = "PowerPC 5200/8260_HIP7";
+                break;
+            case 0x80822013:
+                name = "PowerPC 8260_HIP7R1";
+                break;
+            case 0x80822014:
+                name = "PowerPC 5200B/8260_HIP7RA";
+                break;
+
             default:
                 name = "Unknown";
                 break;

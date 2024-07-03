@@ -5,7 +5,7 @@
      </td>
      <td width="30%">
        <h1>os9fetch</h1>
-       <p>Neofetch clone for Classic Mac based computers, so that you can show off your Macs in the same endearingly stupid way that modern Linux users get to! Currently only tested on Mac OS 9, but could potentially work down to Mac OS 7. Currently only works on PowerPC computers.</p>
+       <p>Neofetch clone for Classic Mac based computers, so that you can show off your Macs in the same endearingly stupid way that modern Linux users get to! Currently only tested on Mac OS 9, but has been tested going back to Mac OS 7.6. Currently only works on PowerPC computers.</p>
      </td>
       
   </tr>
