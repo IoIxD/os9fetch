@@ -21,6 +21,7 @@ namespace detection
     void line();
     void pprintMemory(float memSize);
     void pprintMemoryMB(float memSize);
+    void disk_notice();
     bool is_utf8(const char *string);
     std::vector<short> drive_numbers();
 

@@ -33,6 +33,16 @@ namespace detection
             vec.push_back(std::function<void()>(detection::disk(i + 1, numbers[i])));
         }
 
+        // Disk notice.
+        long sys = detection::gestalt(gestaltSystemVersion);
+        if (sys != NULL)
+        {
+            if (sys >= 0x910)
+            {
+                vec.push_back(std::function<void()>(detection::disk_notice));
+            }
+        }
+
         return vec;
     }
 }
