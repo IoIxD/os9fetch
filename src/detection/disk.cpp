@@ -197,7 +197,7 @@ namespace detection
         *totalBytes = (float)totalBytes_.hi + (float)totalBytes_.lo;
         return err;
     }
-    std::function<void()> disk_below_91(int listNum, short i)
+    std::function<void()> disk(int listNum, short i)
     {
         return [listNum, i]
         {
@@ -236,69 +236,6 @@ namespace detection
                 printf(" free) (ID: %d)", i);
             }
         };
-    }
-    std::function<void()> disk_above_91(int listNum, short i)
-    {
-        return [listNum, i]
-        {
-            OSErr err;
-            unsigned char *volName;
-            short vRefNum;
-            long freeBytes;
-
-            err = GetVInfo(i, volName, &vRefNum, &freeBytes);
-            if (err != 0)
-            {
-                printf("Error getting disk %d's name: %d", i, err);
-                return;
-            }
-
-            HParamBlockRec sts = {
-                .volumeParam = {
-                    .ioCompletion = NULL,
-                    .ioVolIndex = listNum,
-                }};
-            err = PBHGetVInfo(&sts, false);
-            if (err != 0)
-            {
-                return;
-            }
-            auto io = sts.volumeParam;
-
-            auto n = volName;
-            auto len = n[0];
-            auto str = std::string();
-            for (int j = 1; j < len + 1; j++)
-            {
-                str += n[j];
-            };
-
-            float allBlocks = ((float)(unsigned short)io.ioVNmAlBlks * (float)(unsigned long)io.ioVAlBlkSiz);
-            float freeBlocks = (float)(unsigned long)freeBytes;
-            printf("Disk %d: %s, ", listNum, str.c_str());
-            pprintMemory(allBlocks - freeBlocks);
-            printf("/");
-            pprintMemory(allBlocks);
-            printf("* (");
-            pprintMemory(freeBlocks);
-            printf(" free) (ID: %d)", i);
-        };
-    }
-    std::function<void()> disk(int listNum, short i)
-    {
-        long sys = detection::gestalt(gestaltSystemVersion);
-        if (sys == NULL)
-        {
-            return [listNum, i] {};
-        }
-        if (sys >= 0x910)
-        {
-            return disk_above_91(listNum, i);
-        }
-        else
-        {
-            return disk_below_91(listNum, i);
-        }
     }
 
     void disk_notice()

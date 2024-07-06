@@ -25,21 +25,20 @@ namespace detection
         {
             vec.push_back(std::function<void()>(detection::battery));
         }
-        short disks = detection::disk_num();
-        auto numbers = detection::drive_numbers();
-        for (int i = 0; i < disks; i++)
-        {
-
-            vec.push_back(std::function<void()>(detection::disk(i + 1, numbers[i])));
-        }
 
         // Disk notice.
         long sys = detection::gestalt(gestaltSystemVersion);
         if (sys != NULL)
         {
-            if (sys >= 0x910)
+            if (sys >= 0x810)
             {
-                vec.push_back(std::function<void()>(detection::disk_notice));
+                short disks = detection::disk_num();
+                auto numbers = detection::drive_numbers();
+                for (int i = 0; i < disks; i++)
+                {
+
+                    vec.push_back(std::function<void()>(detection::disk(i + 1, numbers[i])));
+                }
             }
         }
 
