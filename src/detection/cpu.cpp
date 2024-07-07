@@ -65,11 +65,13 @@ namespace detection
                 break;
             }
 
+#ifdef FOR_PPC
             int ver = os_version();
             if (ver >= 0x600)
             {
                 clockSpeed();
             }
+#endif
             printf(" (ID: %d)", procType);
         }
     }
