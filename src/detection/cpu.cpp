@@ -34,7 +34,7 @@ namespace detection
         int ver = os_version();
 
         long procType;
-        if (ver >= 0x600)
+        if (ver >= 0x605)
         {
             procType = detection::gestalt(gestaltProcessorType);
         }
@@ -67,7 +67,7 @@ namespace detection
 
 #ifdef FOR_PPC
             int ver = os_version();
-            if (ver >= 0x600)
+            if (ver >= 0x605)
             {
                 clockSpeed();
             }
@@ -609,7 +609,7 @@ namespace detection
         int ver = os_version();
 
         long sys;
-        if (ver >= 0x600)
+        if (ver >= 0x605)
         {
             sys = detection::gestalt(gestaltMachineType);
         }

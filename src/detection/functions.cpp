@@ -19,13 +19,13 @@ namespace detection
         }
 
         vec.push_back(std::function<void()>(detection::os));
-        if (ver >= 0x600)
+        if (ver >= 0x605)
         {
             vec.push_back(std::function<void()>(detection::rom));
         }
         vec.push_back(std::function<void()>(detection::cpu));
         vec.push_back(std::function<void()>(detection::model));
-        if (ver >= 0x600)
+        if (ver >= 0x605)
         {
             vec.push_back(std::function<void()>(detection::memory));
         }
