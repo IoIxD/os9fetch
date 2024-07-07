@@ -143,7 +143,6 @@ namespace detection
 
         for (short i = 3; i < 31; i++)
         {
-            printf("Disk %d?", i);
             unsigned char *volName;
             short vRefNum;
             long freeBytes;
