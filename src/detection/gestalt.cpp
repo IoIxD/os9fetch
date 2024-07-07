@@ -18,7 +18,7 @@ namespace detection
                 printf("negative number used in verReqNo");
                 break;
             case -5502:
-                printf("verReqNo version not handledby this system.");
+                printf("verReqNo version not handled by this system.");
                 break;
             }
         }

@@ -100,6 +100,8 @@ namespace retro
         void Idle();
 
         bool IsEOF() const { return eof; }
+        void Update();
+        void PutCharNoUpdate(char c);
 
     private:
         State sequenceState;
@@ -123,9 +125,6 @@ namespace retro
         bool cursorDrawn = false;
         bool cursorVisible = true;
         bool eof = false;
-
-        void PutCharNoUpdate(char c);
-        void Update();
 
         short CalcStartX(short x, short y);
         Rect CellRect(short x, short y);

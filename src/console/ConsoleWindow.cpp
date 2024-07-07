@@ -47,12 +47,14 @@ ConsoleWindow::ConsoleWindow(Rect r, ConstStr255Param title)
     Rect portRect;
     GetPortBounds(port, &portRect);
 #endif
+#ifdef FOR_PPC
     portRect = (Rect){
         .top = 0,
         .left = 0,
         .bottom = 480,
         .right = 640,
     };
+#endif
     port->portRect = portRect;
 
     SetPort(port);

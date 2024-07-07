@@ -13,7 +13,68 @@
 namespace detection
 {
 
+#ifdef FOR_68K
+    void cpu_68k();
     void cpu()
+    {
+        cpu_68k();
+    }
+#endif
+#ifdef FOR_PPC
+    void cpu_ppc();
+    void cpu()
+    {
+        cpu_ppc();
+    }
+#endif
+    void clockSpeed();
+
+    void cpu_68k()
+    {
+        int ver = os_version();
+
+        long procType;
+        if (ver >= 0x600)
+        {
+            procType = detection::gestalt(gestaltProcessorType);
+        }
+        else
+        {
+            SysEnvRec rec;
+            SysEnvirons(1, &rec);
+            procType = rec.processor;
+        }
+        if (procType != NULL)
+        {
+            switch (procType)
+            {
+            case gestalt68000:
+                printf("CPU: 68000");
+                break;
+            case gestalt68010:
+                printf("CPU: 68010");
+                break;
+            case gestalt68020:
+                printf("CPU: 68020");
+                break;
+            case gestalt68030:
+                printf("CPU: 68030");
+                break;
+            case gestalt68040:
+                printf("CPU: 68040");
+                break;
+            }
+
+            int ver = os_version();
+            if (ver >= 0x600)
+            {
+                clockSpeed();
+            }
+            printf(" (ID: %d)", procType);
+        }
+    }
+
+    void cpu_ppc()
     {
         CPUDevice::Initialize();
         auto vec = CPUDevice::GetCPUS();
@@ -503,42 +564,72 @@ namespace detection
 
             printf("CPU: %s", name.c_str());
 
-            long speed = detection::gestalt(gestaltProcClkSpeed);
-            if (speed != NULL)
-            {
-                if (speed < 1000)
-                {
-                    printf(" %luHz", speed);
-                }
-                else if (speed < 1000000)
-                {
-                    printf(" %luKHz", speed / 1000);
-                }
-                else if (speed < 1000000000)
-                {
-                    printf(" %luMHz", speed / 1000000);
-                }
-                else if (speed < 1000000000000)
-                {
-                    printf(" %luGHz", speed / 1000000000);
-                }
-                else if (speed < 1000000000000000)
-                {
-                    printf(" %luTHz", speed / 1000000000000);
-                }
-                else if (speed < 1000000000000000000)
-                {
-                    printf(" %luPHz", speed / 1000000000000000);
-                }
-            }
+            clockSpeed();
 
             printf(" (ID: %0X)", processorVersion);
         }
     }
 
+    void clockSpeed()
+    {
+        float speed = (float)detection::gestalt(gestaltProcClkSpeed);
+        if (speed != NULL)
+        {
+            if (speed < 1024.0)
+            {
+                printf(" %0.2fHz", speed);
+            }
+            else if (speed < 1048576.0)
+            {
+                printf(" %0.2fKHz", speed / 1024.0);
+            }
+            else if (speed < 1073741824.0)
+            {
+                printf(" %0.2fMHz", speed / 1048576.0);
+            }
+            else if (speed < 1099511627776.0)
+            {
+                printf(" %0.2fGHz", speed / 1073741824.0);
+            }
+            else if (speed < 1125899906842624.0)
+            {
+                printf(" %0.2fTHz", speed / 1099511627776.0);
+            }
+            else
+            {
+                printf(" %0.2fPHz", speed / 1125899906842624.0);
+            }
+            printf(" (%0.2f)", speed);
+        }
+    }
     void model()
     {
-        long sys = detection::gestalt(gestaltMachineType);
+        int ver = os_version();
+
+        long sys;
+        if (ver >= 0x600)
+        {
+            sys = detection::gestalt(gestaltMachineType);
+        }
+        else
+        {
+            SysEnvRec rec;
+            SysEnvirons(1, &rec);
+            sys = rec.machineType;
+            // The result we get near perfectly maps to the modern one, with some exceptions.
+            if (sys == 1)
+            {
+                sys = -1;
+            }
+            else if (sys == 2)
+            {
+                sys = 2;
+            }
+            else
+            {
+                sys -= 2;
+            }
+        }
         if (sys != NULL)
         {
             // We're supposed to be able to use GetIndString. This does not work, presumably because they stopped updating the index, but they did give us all the numbers in the last header file.
@@ -546,6 +637,9 @@ namespace detection
             unsigned char *name2 = NULL;
             switch (sys)
             {
+            case 0:
+                name = "Macintosh 128k";
+                break;
             case 1:
                 name = "Macintosh Classic";
                 break;
@@ -553,7 +647,7 @@ namespace detection
                 name = "Macintosh XL";
                 break;
             case 3:
-                name = "Macintosh 512Ke";
+                name = "Macintosh 512K";
                 break;
 
             case 4:
@@ -882,11 +976,11 @@ namespace detection
             }
             if (name != NULL)
             {
-                printf("Model: %s (ID: %lu)", name, sys);
+                printf("Model: %s (ID: %0.2f)", name, sys);
             }
             else
             {
-                printf("Model: %s (ID: %lu)", name2, sys);
+                printf("Model: %s (ID: %0.2f)", name2, sys);
             }
         }
         return;

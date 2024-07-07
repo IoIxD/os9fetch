@@ -8,6 +8,7 @@
 namespace detection
 {
     long gestalt(OSType l);
+    int os_version();
     bool has_battery();
     bool name_avaliable();
     void memory();
@@ -23,6 +24,11 @@ namespace detection
     void pprintMemoryMB(float memSize);
     void disk_notice();
     bool is_utf8(const char *string);
+
+    void fpu();
+    void color();
+    void keyboard();
+
     std::vector<short> drive_numbers();
 
     short disk_num();

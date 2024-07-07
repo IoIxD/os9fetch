@@ -59,12 +59,15 @@ void retro::InitConsole()
 #else
     Rect r = (*GetMainDevice())->gdRect;
 #endif
+
+#ifdef FOR_PPC
     r = (Rect){
         .top = (r.bottom / 4),
         .left = (r.right / 4),
-        .bottom = (r.bottom / 4) + 320,
-        .right = (r.right / 4) + 640,
+        .bottom = (r.bottom / 4) + 480,
+        .right = (r.bottom / 4) + 640,
     };
+#endif
     {
         // give MultiFinder a chance to bring the App to front
         // see Technote TB 35 - MultiFinder Miscellanea

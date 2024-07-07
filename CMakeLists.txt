@@ -39,6 +39,7 @@ file(GLOB_RECURSE data resources/*)
 ###############################################################################
 
 # add the data to the target, so it becomes visible in some IDE
+
 if(CMAKE_SYSTEM_NAME MATCHES Retro)
     add_application(os9fetch ${sources} ${data})
 else()
@@ -56,12 +57,20 @@ set_target_properties(os9fetch PROPERTIES COMPILE_OPTIONS -ffunction-sections)
 
 #target_link_libraries( os9fetch ThreadsLib)
 
-target_link_libraries( os9fetch PowerMgrLib)
-target_link_libraries( os9fetch NameRegistryLib)
-target_link_libraries( os9fetch AppleScriptLib)
+if(PLATFORM MATCHES retro68)
+    add_compile_definitions(FOR_68K)
+endif()
+
+if(PLATFORM MATCHES retroppc)
+    add_compile_definitions(FOR_PPC)
+    target_link_libraries( os9fetch PowerMgrLib)
+    target_link_libraries( os9fetch NameRegistryLib)
+endif()
+
+
 target_link_libraries( os9fetch -Lglut.lib)
 include_directories( "${RETRO68_TOOLCHAIN}universal/CIncludes/")
-
+message(STATUS "Making for ${CMAKE_SYSTEM_NAME}")
 if(CMAKE_SYSTEM_NAME MATCHES Retro68)
     set_target_properties(os9fetch PROPERTIES LINK_FLAGS "-Wl,--mac-strip-macsbug")
 endif()

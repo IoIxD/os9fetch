@@ -9,6 +9,7 @@
 
 namespace detection
 {
+#ifdef FOR_PPC
     pascal OSErr __PBXGetVolInfoSync(XVolumeParamPtr paramBlock)
     {
         enum
@@ -129,6 +130,7 @@ namespace detection
         }
         return (result);
     }
+#endif
     std::vector<short> driveNumbers;
     std::vector<short> drive_numbers()
     {
@@ -136,9 +138,12 @@ namespace detection
     };
     short disk_num()
     {
+
         OSErr err = 0;
+
         for (short i = 3; i < 31; i++)
         {
+            printf("Disk %d?", i);
             unsigned char *volName;
             short vRefNum;
             long freeBytes;
@@ -187,16 +192,7 @@ namespace detection
         *res = str;
         return 0;
     }
-    OSErr get_info(short i, unsigned char *volName, float *freeBytes, float *totalBytes)
-    {
-        short vRefNum;
-        UnsignedWide freeBytes_;
-        UnsignedWide totalBytes_;
-        OSErr err = XGetVInfo(i, volName, &vRefNum, &freeBytes_, &totalBytes_);
-        *freeBytes = (float)freeBytes_.hi + (float)freeBytes_.lo;
-        *totalBytes = (float)totalBytes_.hi + (float)totalBytes_.lo;
-        return err;
-    }
+
     std::function<void()> disk(int listNum, short i)
     {
         return [listNum, i]
@@ -239,7 +235,7 @@ namespace detection
             pprintMemory(allBlocks - freeBlocks);
             printf("/");
             pprintMemory(allBlocks);
-            printf("* (");
+            printf(" (");
             pprintMemory(freeBlocks);
             printf(" free) (ID: %d)", i);
         };
