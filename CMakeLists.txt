@@ -63,12 +63,14 @@ endif()
 
 if(PLATFORM MATCHES retroppc)
     add_compile_definitions(FOR_PPC)
+    set_target_properties(os9fetch PROPERTIES COMPILE_FLAGS "-ffunction-sections -mcpu=601 -O3 -Wall -Wextra -Wno-unused-parameter")
+    set_target_properties(os9fetch PROPERTIES LINK_FLAGS "-Wl,-gc-sections")
     target_link_libraries( os9fetch PowerMgrLib)
     target_link_libraries( os9fetch NameRegistryLib)
+    target_link_libraries( os9fetch OpenGL)
 endif()
 
 
-target_link_libraries( os9fetch -Lglut.lib)
 include_directories( "${RETRO68_TOOLCHAIN}universal/CIncludes/")
 message(STATUS "Making for ${CMAKE_SYSTEM_NAME}")
 if(CMAKE_SYSTEM_NAME MATCHES Retro68)
